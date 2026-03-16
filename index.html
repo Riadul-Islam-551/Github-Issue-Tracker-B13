@@ -20,29 +20,85 @@
       type="text/css"
     />
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <!-- font awesome  -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+      integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
   </head>
-  <body class="h-screen flex justify-center items-center bg-base-100">
-    <section
-      class="border w-11/12 md:w-[400px] p-5 bg-white rounded-2xl shadow-md"
+  <body>
+    <!-- login page  -->
+    <div
+      id="login-page"
+      class="h-screen flex justify-center items-center bg-base-100"
     >
-      <div class="flex flex-col justify-center items-center space-y-2 mb-5">
-        <img src="./assets/github-logo.png" alt="Github Logo" />
-        <h1 class="font-bold text-xl md:text-2xl">GitHub Iss ues Tracker</h1>
-        <h4 class="text-light text-sm md:text-lg">
-          Sign in to manage your issues
-        </h4>
-      </div>
-      <form class="fieldset border-base-300 rounded-box border p-4">
-        <label class="label text-neutral">User Name</label>
-        <input type="email" class="input" placeholder="User Name" />
-        <p class="text-primary">Default: admin</p>
+      <section class="w-11/12 md:w-[400px] p-5 bg-white rounded-2xl shadow-md">
+        <div class="flex flex-col justify-center items-center space-y-2 mb-5">
+          <img src="./assets/github-logo.png" alt="Github Logo" />
+          <h1 class="font-bold text-xl md:text-2xl">GitHub Issues Tracker</h1>
+          <h4 class="text-light text-sm md:text-lg">
+            Sign in to manage your issues
+          </h4>
+        </div>
+        <form
+          id="login-form"
+          class="fieldset border-base-300 rounded-box border p-4"
+        >
+          <label class="label text-neutral">User Name</label>
+          <input
+            id="user-input"
+            type="text"
+            class="input"
+            placeholder="User Name"
+          />
+          <p class="text-primary">Default: admin</p>
 
-        <label class="label text-neutral">Password</label>
-        <input type="password" class="input" placeholder="Password" />
-        <p class="text-primary">Default: admin123</p>
+          <label class="label text-neutral">Password</label>
+          <input
+            id="password-input"
+            type="password"
+            class="input"
+            placeholder="Password"
+          />
+          <p class="text-primary">Default: admin123</p>
 
-        <button class="btn btn-primary mt-4">Login</button>
-      </form>
-    </section>
+          <button id="login-btn" class="btn btn-primary mt-4" type="submit">
+            Login
+          </button>
+        </form>
+      </section>
+    </div>
+    <!-- main page  -->
+    <div id="main-page" class="">
+      <header>
+        <nav>
+          <div class="navbar flex justify-between items-center shadow-lg">
+            <div class="flex justify-start items-center gap-2">
+              <img width="40px" src="./assets/github-logo.png" alt="" />
+              <h1 class="font-bold text-xl md:text-2xl">
+                GitHub Issues Tracker
+              </h1>
+            </div>
+            <div class="flex justify-start items-center border rounded-md p-2">
+              <i class="fa-brands fa-sistrix"></i>
+              <div class="">
+                <input
+                  type="search"
+                  name=""
+                  id=""
+                  placeholder="Search Issues"
+                  class="border-none"
+                />
+              </div>
+            </div>
+          </div>
+        </nav>
+      </header>
+    </div>
+    <!-- scripts  -->
+    <script src="./scripts/login.js"></script>
   </body>
 </html>
