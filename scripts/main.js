@@ -148,11 +148,19 @@ function showAllIssue(issues) {
 }
 
 openedButton.addEventListener("click", function () {
+  allButton.classList.remove("btn-primary", "text-base-100");
+  openedButton.classList.add("btn-success", "text-base-100");
+  closedButton.classList.remove("bg-purple-600", "text-base-100");
+
   const openIssues = allIssuesData.filter((issue) => issue.status === "open");
   showAllIssue(openIssues);
 });
 
 closedButton.addEventListener("click", function () {
+  allButton.classList.remove("btn-primary", "text-base-100");
+  openedButton.classList.remove("btn-success", "text-base-100");
+  closedButton.classList.add("bg-purple-600", "text-base-100");
+
   const closeIssues = allIssuesData.filter(
     (issue) => issue.status === "closed",
   );
@@ -160,6 +168,10 @@ closedButton.addEventListener("click", function () {
 });
 
 allButton.addEventListener("click", function () {
+  allButton.classList.add("btn-primary", "text-base-100");
+  openedButton.classList.remove("btn-success", "text-base-100");
+  closedButton.classList.remove("bg-purple-600", "text-base-100");
+
   showAllIssue(allIssuesData);
 });
 
