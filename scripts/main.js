@@ -15,19 +15,6 @@ const loadAllIssue = () => {
     });
 };
 
-// "id": 33,
-// "title": "Add bulk operations support",
-// "description": "Allow users to perform bulk actions like delete, update status on multiple items at once.",
-// "status": "open",
-// "labels": [
-//   "enhancement"
-// ],
-// "priority": "low",
-// "author": "bulk_barry",
-// "assignee": "",
-// "createdAt": "2024-02-02T10:00:00Z",
-// "updatedAt": "2024-02-02T10:00:00Z"
-
 // load single issue details
 const loadSingleDetails = (id) => {
   const url = `https://phi-lab-server.vercel.app/api/v1/lab/issue/${id}`;
@@ -151,22 +138,8 @@ function showDetails(details) {
   
   `;
   document.getElementById("my_modal_5").showModal();
-  console.log(details);
+  // console.log(details);
 }
-
-// "id": 2,
-//       "title": "Add dark mode support",
-//       "description": "Users are requesting a dark mode option. This would improve accessibility and user experience.",
-//       "status": "open",
-//       "labels": [
-//         "enhancement",
-//         "good first issue"
-//       ],
-//       "priority": "medium",
-//       "author": "sarah_dev",
-//       "assignee": "",
-//       "createdAt": "2024-01-14T14:20:00Z",
-//       "updatedAt": "2024-01-16T09:15:00Z"
 
 function showAllIssue(issues) {
   const allIssue = document.getElementById("all-issue");
@@ -316,3 +289,24 @@ allButton.addEventListener("click", function () {
 });
 
 loadAllIssue();
+
+//search implementation
+
+document.getElementById("search-btn").addEventListener("click", function () {
+  const searchInput = document.getElementById("input-search");
+  const searchValue = searchInput.value.trim().toLowerCase();
+
+  // console.log(searchValue);
+  // console.log(allIssuesData);
+
+  const filteredData = allIssuesData.filter((filteredIssue) => {
+    return filteredIssue.title.toLowerCase().includes(searchValue);
+  });
+
+  allButton.classList.add("btn-primary", "text-base-100");
+  openedButton.classList.remove("btn-success", "text-base-100");
+  closedButton.classList.remove("bg-purple-600", "text-base-100");
+
+  // console.log(filteredData);
+  showAllIssue(filteredData);
+});
