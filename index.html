@@ -102,7 +102,9 @@
       <main class="max-w-[1200px] mx-auto px-2">
         <!-- category section  -->
         <section class="my-12 p-5 rounded-md bg-white space-x-3">
-          <button id="all-button" class="btn btn-primary shadow-none">All</button>
+          <button id="all-button" class="btn btn-primary shadow-none">
+            All
+          </button>
           <button id="opened-button" class="btn shadow-none">Open</button>
           <button id="closed-button" class="btn shadow-none">Closed</button>
         </section>
@@ -118,16 +120,36 @@
             />
             <div>
               <h2 class="font-bold text-lg">50 Issues</h2>
-              <p class="text-light">Track and manage your project issues</p>
+              <p class="text-light text-sm">
+                Track and manage your project issues
+              </p>
             </div>
           </div>
           <div class="flex justify-center items-center gap-2">
             <div class="bg-success p-2 rounded-full"></div>
-            <div class="mr-4"><p class="text-sm">Open</p></div>
+            <div class="mr-2"><p class="text-sm">Open</p></div>
             <div class="bg-purple-600 p-2 rounded-full"></div>
             <div><p class="text-sm">Closed</p></div>
           </div>
         </section>
+        <section>
+          <!-- Open the modal using ID.showModal() method -->
+          <!-- <button class="btn" onclick="my_modal_5.showModal()">open modal</button> -->
+          <dialog id="my_modal_5" class="modal modal-bottom sm:modal-middle">
+            <div class="modal-box">
+              <div id="issue-details-modal">
+                
+              </div>
+              <div class="modal-action">
+                <form method="dialog">
+                  <!-- if there is a button in form, it will close the modal -->
+                  <button class="btn btn-primary outline-none">Close</button>
+                </form>
+              </div>
+            </div>
+          </dialog>
+        </section>
+
         <!-- all issue section  -->
         <section
           id="all-issue"

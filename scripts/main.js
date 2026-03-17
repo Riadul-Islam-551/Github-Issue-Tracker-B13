@@ -4,6 +4,7 @@ const closedButton = document.getElementById("closed-button");
 
 let allIssuesData = [];
 
+// load all issue data
 const loadAllIssue = () => {
   const url = "https://phi-lab-server.vercel.app/api/v1/lab/issues";
   fetch(url)
@@ -13,6 +14,137 @@ const loadAllIssue = () => {
       showAllIssue(allIssuesData);
     });
 };
+
+// "id": 33,
+// "title": "Add bulk operations support",
+// "description": "Allow users to perform bulk actions like delete, update status on multiple items at once.",
+// "status": "open",
+// "labels": [
+//   "enhancement"
+// ],
+// "priority": "low",
+// "author": "bulk_barry",
+// "assignee": "",
+// "createdAt": "2024-02-02T10:00:00Z",
+// "updatedAt": "2024-02-02T10:00:00Z"
+
+// load single issue details
+const loadSingleDetails = (id) => {
+  const url = `https://phi-lab-server.vercel.app/api/v1/lab/issue/${id}`;
+  fetch(url)
+    .then((res) => res.json())
+    .then((details) => showDetails(details.data));
+};
+
+function showDetails(details) {
+  const issueDetailsModal = document.getElementById("issue-details-modal");
+
+  // conditional rendering for showing the label process
+  let labelIcon = "";
+  let labelStyle = "";
+
+  const detailsLabel = details.labels
+    .map((label) => {
+      // console.log(label);
+
+      if (label === "bug") {
+        labelIcon = "<i class='fa-solid fa-bug'></i>";
+        labelStyle = "border-red-300 text-red-500 bg-red-50";
+      } else if (label === "help wanted") {
+        labelIcon = "<i class='fa-solid fa-triangle-exclamation'></i>";
+        labelStyle = "border-yellow-300 text-yellow-500 bg-yellow-50";
+      } else if (label === "enhancement") {
+        labelIcon = "<i class='fa-regular fa-lightbulb'></i>";
+        labelStyle = "border-green-300 text-green-500 bg-green-50";
+      } else if (label === "good first issue") {
+        labelIcon = "<i class='fa-brands fa-gg'></i>";
+        labelStyle = "border-blue-300 text-blue-500 bg-blue-50";
+      } else {
+        labelIcon = "<i class='fa-regular fa-clipboard'></i>";
+        labelStyle = "border-gray-300 text-gray-500 bg-gray-50";
+      }
+
+      return `
+        <span
+        class="flex justify-center items-center text-xs px-3 py-1 rounded-full border ${labelStyle}"
+        >
+            ${labelIcon}
+            ${label}
+        </span>
+        `;
+    })
+    .join("");
+
+  // conditional rendering for priority
+  let priorityText = "";
+  let priorityBg = "";
+  if (details.priority === "high") {
+    priorityText = "text-red-500";
+    priorityBg = "bg-red-100";
+  } else if (details.priority === "medium") {
+    priorityText = "text-yellow-500";
+    priorityBg = "bg-yellow-100";
+  } else {
+    priorityText = "text-gray-500";
+    priorityBg = "bg-gray-100";
+  }
+
+  issueDetailsModal.innerHTML = `
+  
+                <div
+                  class="max-w-2xl mx-auto bg-gray-100 rounded-xl p-6 shadow-sm border border-gray-200"
+                >
+                  <h2 class="text-xl font-semibold text-gray-800 mb-3">
+                    ${details.title}
+                  </h2>
+
+                  <div
+                    class="flex items-center gap-3 text-sm text-gray-500 mb-4"
+                  >
+                    <span
+                      class="bg-green-100 text-green-700 px-3 py-1 rounded-full font-medium"
+                    >
+                      Opened
+                    </span>
+                    <span>Opened by ${details.assignee}</span>
+                    <span>•</span>
+                    <span>${details.updatedAt}</span>
+                  </div>
+
+                  <!-- Tags -->
+                  <div class="flex flex-wrap gap-2 mb-4">
+                    ${detailsLabel}
+                  </div>
+
+                  <!-- Description -->
+                  <p class="text-gray-600 mb-6">
+                    ${details.description}
+                  </p>
+
+                  <!-- Footer -->
+                  <div
+                    class="bg-gray-200 rounded-lg p-4 flex justify-between items-center"
+                  >
+                    <div>
+                      <p class="text-sm text-gray-500">Assignee:</p>
+                      <p class="font-semibold text-gray-800">${details.assignee}</p>
+                    </div>
+
+                    <div class="text-right">
+                      <p class="text-sm text-gray-500 mb-1">Priority:</p>
+                      <span
+                        class="${priorityBg} ${priorityText} text-xs font-semibold px-3 py-1 rounded-full"
+                      >
+                        ${details.priority}
+                      </span>
+                    </div>
+                  </div>
+                </div>
+  
+  `;
+  document.getElementById("my_modal_5").showModal();
+  console.log(details);
+}
 
 // "id": 2,
 //       "title": "Add dark mode support",
@@ -109,7 +241,7 @@ function showAllIssue(issues) {
 
     issueCard.innerHTML = `
     <div
-            class="bg-white h-full rounded-xl shadow-md border border-gray-200 overflow-hidden"
+          onClick="loadSingleDetails(${issue.id})"  class="bg-white h-full rounded-xl shadow-md border border-gray-200 overflow-hidden"
           >
             <div class="h-1 ${borderColor}"></div>
 
@@ -143,7 +275,7 @@ function showAllIssue(issues) {
           </div>
     `;
     allIssue.append(issueCard);
-    console.log(issue);
+    // console.log(issue);
   }
 }
 
