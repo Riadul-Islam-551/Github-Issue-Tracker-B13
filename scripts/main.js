@@ -4,6 +4,7 @@ const closedButton = document.getElementById("closed-button");
 const allIssue = document.getElementById("all-issue");
 const loadingIssue = document.getElementById("loading-issue");
 
+//set the loading spinner
 const manageLoading = (status) => {
   if (status == true) {
     loadingIssue.classList.remove("hidden");
@@ -34,10 +35,10 @@ const loadSingleDetails = (id) => {
   const url = `https://phi-lab-server.vercel.app/api/v1/lab/issue/${id}`;
   fetch(url)
     .then((res) => res.json())
-    .then((details) => showDetails(details.data));
+    .then((details) => showSingleDetails(details.data));
 };
 
-function showDetails(details) {
+function showSingleDetails(details) {
   const issueDetailsModal = document.getElementById("issue-details-modal");
 
   // conditional rendering for showing the label process
@@ -275,6 +276,7 @@ function showAllIssue(issues) {
   manageLoading(false);
 }
 
+//add active button style
 openedButton.addEventListener("click", function () {
   allButton.classList.remove("btn-primary", "text-base-100");
   openedButton.classList.add("btn-success", "text-base-100");
@@ -306,7 +308,6 @@ allButton.addEventListener("click", function () {
 loadAllIssue();
 
 //search implementation
-
 document.getElementById("search-btn").addEventListener("click", function () {
   const searchInput = document.getElementById("input-search");
   const searchValue = searchInput.value.trim().toLowerCase();

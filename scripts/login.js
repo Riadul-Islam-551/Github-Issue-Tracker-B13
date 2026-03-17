@@ -16,6 +16,8 @@ loginButton.addEventListener("click", function (e) {
   if (user === "admin" && password === "admin123") {
     loginPage.classList.add("hidden");
     mainPage.classList.remove("hidden");
+  } else {
+    alert("Wrong Credentials");
   }
 });
 
