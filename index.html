@@ -102,9 +102,9 @@
       <main class="max-w-[1200px] mx-auto px-2">
         <!-- category section  -->
         <section class="my-12 p-5 rounded-md bg-white space-x-3">
-          <button class="btn btn-primary shadow-none">All</button>
-          <button class="btn btn-success shadow-none">Open</button>
-          <button class="btn bg-purple-600 shadow-none">Closed</button>
+          <button id="all-button" class="btn btn-primary shadow-none">All</button>
+          <button id="opened-button" class="btn btn-success shadow-none">Open</button>
+          <button id="closed-button" class="btn bg-purple-600 shadow-none">Closed</button>
         </section>
         <!-- total issue section  -->
         <section
@@ -131,7 +131,7 @@
         <!-- all issue section  -->
         <section
           id="all-issue"
-          class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4 border py-10 rounded-md mb-10"
+          class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4 py-10 rounded-md mb-10"
         >
           <!-- <div
             class="bg-white rounded-xl shadow-md border border-gray-200 overflow-hidden"

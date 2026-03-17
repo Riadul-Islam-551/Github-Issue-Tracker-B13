@@ -1,8 +1,17 @@
+const allButton = document.getElementById("all-button");
+const openedButton = document.getElementById("opened-button");
+const closedButton = document.getElementById("closed-button");
+
+let allIssuesData = [];
+
 const loadAllIssue = () => {
   const url = "https://phi-lab-server.vercel.app/api/v1/lab/issues";
   fetch(url)
     .then((res) => res.json())
-    .then((data) => showAllIssue(data.data));
+    .then((data) => {
+      allIssuesData = data.data;
+      showAllIssue(allIssuesData);
+    });
 };
 
 // "id": 2,
@@ -68,7 +77,7 @@ function showAllIssue(issues) {
 
     const cardLabel = issue.labels
       .map((label) => {
-        console.log(label);
+        // console.log(label);
 
         if (label === "bug") {
           labelIcon = "<i class='fa-solid fa-bug'></i>";
@@ -134,8 +143,24 @@ function showAllIssue(issues) {
           </div>
     `;
     allIssue.append(issueCard);
-    // console.log(issue);
+    console.log(issue);
   }
 }
+
+openedButton.addEventListener("click", function () {
+  const openIssues = allIssuesData.filter((issue) => issue.status === "open");
+  showAllIssue(openIssues);
+});
+
+closedButton.addEventListener("click", function () {
+  const closeIssues = allIssuesData.filter(
+    (issue) => issue.status === "closed",
+  );
+  showAllIssue(closeIssues);
+});
+
+allButton.addEventListener("click", function () {
+  showAllIssue(allIssuesData);
+});
 
 loadAllIssue();
