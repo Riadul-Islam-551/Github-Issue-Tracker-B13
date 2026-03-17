@@ -29,11 +29,11 @@
       referrerpolicy="no-referrer"
     />
   </head>
-  <body>
+  <body class="bg-base-200">
     <!-- login page  -->
     <div
       id="login-page"
-      class="h-screen flex justify-center items-center bg-base-100"
+      class="h-screen flex justify-center items-center bg-base-200"
     >
       <section class="w-11/12 md:w-[400px] p-5 bg-white rounded-2xl shadow-md">
         <div class="flex flex-col justify-center items-center space-y-2 mb-5">
@@ -74,8 +74,8 @@
     <!-- main page  -->
     <div id="main-page" class="">
       <header>
-        <nav>
-          <div class="navbar flex justify-between items-center shadow-lg">
+        <nav class="w-full bg-white shadow-sm">
+          <div class="navbar flex justify-between items-center  py-5 max-w-[1200px] mx-auto">
             <div class="flex justify-start items-center gap-2">
               <img width="40px" src="./assets/github-logo.png" alt="" />
               <h1 class="font-bold text-xl md:text-2xl">
@@ -97,6 +97,30 @@
           </div>
         </nav>
       </header>
+      <main class="max-w-[1200px] mx-auto px-2">
+        <!-- category section  -->
+        <section class="my-12 p-5 rounded-md bg-white space-x-3">
+          <button class="btn btn-primary shadow-none">All</button>
+          <button class="btn btn-success shadow-none">Open</button>
+          <button class="btn bg-purple-600 shadow-none">Closed</button>
+        </section>
+        <!-- total issue section  -->
+         <section class="flex justify-between items-center p-3 mb-5 bg-base-100 rounded-md">
+          <div class="flex justify-start items-center gap-2">
+            <img class="bg-blue-100 p-2 rounded-full" src="./assets/Aperture.png" alt="">
+            <div>
+              <h2 class="font-bold text-lg">50 Issues</h2>
+              <p class="text-lignt">Track and manage your project issues</p>
+            </div>
+          </div>
+          <div class="flex justify-center items-center gap-2">
+            <div class="bg-success p-2 rounded-full"></div>
+            <div class="mr-4"><p class="text-sm">Open</p></div>
+            <div class="bg-purple-600 p-2 rounded-full"></div>
+            <div><p class="text-sm">Closed</p></div>
+          </div>
+         </section>
+      </main>
     </div>
     <!-- scripts  -->
     <script src="./scripts/login.js"></script>
