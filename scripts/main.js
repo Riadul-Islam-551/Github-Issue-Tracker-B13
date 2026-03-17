@@ -89,6 +89,14 @@ function showDetails(details) {
     priorityBg = "bg-gray-100";
   }
 
+  //assignee conditional rendering
+  let assigneeTask = "";
+  if (details.assignee === "") {
+    assigneeTask = "Unassigned";
+  } else {
+    assigneeTask = details.assignee;
+  }
+
   issueDetailsModal.innerHTML = `
   
                 <div
@@ -106,7 +114,7 @@ function showDetails(details) {
                     >
                       Opened
                     </span>
-                    <span>Opened by ${details.assignee}</span>
+                    <span>Opened by ${details.author}</span>
                     <span>•</span>
                     <span>${details.updatedAt}</span>
                   </div>
@@ -127,7 +135,7 @@ function showDetails(details) {
                   >
                     <div>
                       <p class="text-sm text-gray-500">Assignee:</p>
-                      <p class="font-semibold text-gray-800">${details.assignee}</p>
+                      <p class="font-semibold text-gray-800">${assigneeTask}</p>
                     </div>
 
                     <div class="text-right">
