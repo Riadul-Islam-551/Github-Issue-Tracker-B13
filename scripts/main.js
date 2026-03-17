@@ -1,11 +1,24 @@
 const allButton = document.getElementById("all-button");
 const openedButton = document.getElementById("opened-button");
 const closedButton = document.getElementById("closed-button");
+const allIssue = document.getElementById("all-issue");
+const loadingIssue = document.getElementById("loading-issue");
+
+const manageLoading = (status) => {
+  if (status == true) {
+    loadingIssue.classList.remove("hidden");
+    allIssue.classList.add("hidden");
+  } else {
+    loadingIssue.classList.add("hidden");
+    allIssue.classList.remove("hidden");
+  }
+};
 
 let allIssuesData = [];
 
 // load all issue data
 const loadAllIssue = () => {
+  manageLoading(true);
   const url = "https://phi-lab-server.vercel.app/api/v1/lab/issues";
   fetch(url)
     .then((res) => res.json())
@@ -17,6 +30,7 @@ const loadAllIssue = () => {
 
 // load single issue details
 const loadSingleDetails = (id) => {
+  manageLoading(true);
   const url = `https://phi-lab-server.vercel.app/api/v1/lab/issue/${id}`;
   fetch(url)
     .then((res) => res.json())
@@ -138,11 +152,11 @@ function showDetails(details) {
   
   `;
   document.getElementById("my_modal_5").showModal();
+  manageLoading(false);
   // console.log(details);
 }
 
 function showAllIssue(issues) {
-  const allIssue = document.getElementById("all-issue");
   allIssue.innerHTML = " ";
   for (const issue of issues) {
     const issueCard = document.createElement("div");
@@ -258,6 +272,7 @@ function showAllIssue(issues) {
     allIssue.append(issueCard);
     // console.log(issue);
   }
+  manageLoading(false);
 }
 
 openedButton.addEventListener("click", function () {
