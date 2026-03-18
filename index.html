@@ -38,7 +38,7 @@
       <section class="w-11/12 md:w-[400px] p-5 bg-white rounded-2xl shadow-md">
         <div class="flex flex-col justify-center items-center space-y-2 mb-5">
           <img src="./assets/github-logo.png" alt="Github Logo" />
-          <h1 class="font-bold text-xl md:text-2xl">GitHub Issues Tracker</h1>
+          <h1 class="font-bold text-lg md:text-xl lg:text-2xl">GitHub Issues Tracker</h1>
           <h4 class="text-light text-sm md:text-lg">
             Sign in to manage your issues
           </h4>
@@ -72,7 +72,7 @@
       </section>
     </div>
     <!-- main page  -->
-    <div id="main-page" class="min-h-screen">
+    <div id="main-page" class="min-h-screen hidden">
       <!-- navigation section  -->
       <header>
         <nav class="w-full bg-white shadow-sm">
@@ -122,7 +122,9 @@
               alt=""
             />
             <div>
-              <h2 class="font-bold text-lg"><span id="total-issue">0</span> Issues</h2>
+              <h2 class="font-bold text-lg">
+                <span id="total-issue">0</span> Issues
+              </h2>
               <p class="text-light text-sm">
                 Track and manage your project issues
               </p>
@@ -136,14 +138,16 @@
           </div>
         </section>
         <!-- loading section  -->
-        <section id="loading-issue" class="h-16 flex justify-center items-center">
+        <section
+          id="loading-issue"
+          class="h-16 flex justify-center items-center"
+        >
           <div>
             <span class="loading loading-spinner text-primary"></span>
           </div>
         </section>
-
+        <!-- Open the modal using ID.showModal() method -->
         <section>
-          <!-- Open the modal using ID.showModal() method -->
           <!-- <button class="btn" onclick="my_modal_5.showModal()">open modal</button> -->
           <dialog id="my_modal_5" class="modal modal-bottom sm:modal-middle">
             <div class="modal-box">
