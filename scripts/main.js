@@ -3,6 +3,13 @@ const openedButton = document.getElementById("opened-button");
 const closedButton = document.getElementById("closed-button");
 const allIssue = document.getElementById("all-issue");
 const loadingIssue = document.getElementById("loading-issue");
+const totalIssues = document.getElementById("total-issue");
+
+const showTotalIssues = (issues) => {
+  totalIssues.innerText = issues.length;
+};
+
+// console.log(totalIssues.innerText)
 
 //set the loading spinner
 const manageLoading = (status) => {
@@ -158,6 +165,7 @@ function showSingleDetails(details) {
 }
 
 function showAllIssue(issues) {
+  showTotalIssues(issues);
   allIssue.innerHTML = " ";
   for (const issue of issues) {
     const issueCard = document.createElement("div");
@@ -283,6 +291,7 @@ openedButton.addEventListener("click", function () {
   closedButton.classList.remove("bg-purple-600", "text-base-100");
 
   const openIssues = allIssuesData.filter((issue) => issue.status === "open");
+  showTotalIssues(openIssues);
   showAllIssue(openIssues);
 });
 
@@ -294,6 +303,7 @@ closedButton.addEventListener("click", function () {
   const closeIssues = allIssuesData.filter(
     (issue) => issue.status === "closed",
   );
+  showTotalIssues(closeIssues);
   showAllIssue(closeIssues);
 });
 
